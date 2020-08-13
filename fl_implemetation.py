@@ -51,7 +51,7 @@ for (client_name, data) in clients.items():
 #process and batch the test set  
 test_batched = tf.data.Dataset.from_tensor_slices((X_test, y_test)).batch(len(y_test))
 
-comms_round = 100
+comms_round = 100  # It’s simply the number global epochs (aggregations) I will be running during training
     
 #create optimizer
 lr = 0.01 
@@ -109,7 +109,8 @@ for comm_round in range(comms_round):
 
     #test global model and print out metrics after each communications round
     for(X_test, Y_test) in test_batched:
-        global_acc, global_loss = test_model(X_test, Y_test, global_model, comm_round)SGD_dataset = tf.data.Dataset.from_tensor_slices((X_train, y_train)).shuffle(len(y_train)).batch(320)
+        global_acc, global_loss = test_model(X_test, Y_test, global_model, comm_round)
+        SGD_dataset = tf.data.Dataset.from_tensor_slices((X_train, y_train)).shuffle(len(y_train)).batch(320)
 smlp_SGD = SimpleMLP()
 SGD_model = smlp_SGD.build(784, 10) 
 
