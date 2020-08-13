@@ -81,6 +81,7 @@ def batch_data(data_shard, bs=32):
         tfds object'''
     #seperate shard into data and labels lists
     data, label = zip(*data_shard)
+    print(len(label))
     dataset = tf.data.Dataset.from_tensor_slices((list(data), list(label)))
     return dataset.shuffle(len(label)).batch(bs)
 

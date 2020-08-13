@@ -22,7 +22,7 @@ from tensorflow.keras import backend as K
 from fl_mnist_implementation_tutorial_utils import *
 
 #declear path to your mnist data folder
-img_path = '/path/to/your/training/dataset'
+img_path = './dataset'
 
 #get the path list using the path object
 image_paths = list(paths.list_images(img_path))
@@ -110,7 +110,10 @@ for comm_round in range(comms_round):
     #test global model and print out metrics after each communications round
     for(X_test, Y_test) in test_batched:
         global_acc, global_loss = test_model(X_test, Y_test, global_model, comm_round)
-        SGD_dataset = tf.data.Dataset.from_tensor_slices((X_train, y_train)).shuffle(len(y_train)).batch(320)
+
+
+
+SGD_dataset = tf.data.Dataset.from_tensor_slices((X_train, y_train)).shuffle(len(y_train)).batch(320)
 smlp_SGD = SimpleMLP()
 SGD_model = smlp_SGD.build(784, 10) 
 
