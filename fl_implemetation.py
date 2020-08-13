@@ -126,5 +126,5 @@ _ = SGD_model.fit(SGD_dataset, epochs=100, verbose=0)
 
 #test the SGD global model and print out metrics
 for(X_test, Y_test) in test_batched:
-        SGD_acc, SGD_loss = test_model(X_test, Y_test, SGD_model, 1)
+        SGD_acc, SGD_loss = test_model(X_test, Y_test, SGD_model, -1)
 
